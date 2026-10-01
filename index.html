@@ -1,1066 +1,511 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>马来西亚 · 出行清单</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>马来西亚 · 出行准备清单（10/2–10/9）</title>
+<meta name="theme-color" content="#F5F3ED">
+<style>
+  :root{
+    --bg:#F5F3ED; --card:#FFFFFF; --line:#E7E3D8; --soft-line:#EFEADD;
+    --teal:#155E63; --teal2:#0E4A4E; --gold:#B45309;
+    --ink:#1F2937; --mut:#6B7280; --faint:#9CA3AF;
+    --t1c:#9A3412; --t1b:#FDEAD9; --t2c:#155E63; --t2b:#E8F1F0; --t3c:#64748B; --t3b:#EEF1F4;
+    --okc:#15803D; --okb:#E8F5EC;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,"SF Pro SC","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.55; font-size:15px;
+  }
+  .num{font-family:Georgia,"Times New Roman",serif}
+  a{color:var(--teal)}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
-            background: #000;
-            color: #f5f5f7;
-            padding: 0;
-            line-height: 1.47059;
-            -webkit-font-smoothing: antialiased;
-        }
+  /* ---------- hero ---------- */
+  .hero{max-width:780px;margin:0 auto;padding:26px 18px 10px}
+  .tag{display:inline-block;font-size:12px;color:var(--teal);border:1px solid #CFE0DF;background:#EDF4F3;border-radius:999px;padding:3px 11px;letter-spacing:.02em}
+  h1{font-size:26px;line-height:1.25;margin:10px 0 4px;color:var(--teal2);letter-spacing:.01em}
+  .sub{margin:0;color:var(--mut);font-size:13.5px}
+  .hero-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .ring-wrap{position:relative;width:112px;height:112px;flex:0 0 auto}
+  .ring{width:112px;height:112px;transform:rotate(-90deg)}
+  .ring-bg{fill:none;stroke:#E7E3D8;stroke-width:9}
+  .ring-fg{fill:none;stroke:var(--teal);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .45s ease}
+  .ring-txt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring-txt b{font-size:23px;color:var(--teal2);font-family:Georgia,"Times New Roman",serif}
+  .ring-txt span{font-size:11.5px;color:var(--mut);margin-top:1px}
+  .chips{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:12.5px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+  .chip.warn{color:var(--gold);border-color:#EAD9C5;background:#FFF9F0}
 
-        .hero {
-            text-align: center;
-            padding: 60px 20px 40px;
-            background: linear-gradient(180deg, #1d1d1f 0%, #000 100%);
-        }
+  /* ---------- sticky toolbar ---------- */
+  .toolbar{position:sticky;top:0;z-index:40;background:rgba(245,243,237,.94);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);border-bottom:1px solid var(--soft-line)}
+  .toolbar-in{max-width:780px;margin:0 auto;padding:8px 18px 9px}
+  .progline{height:4px;background:#E7E3D8;border-radius:99px;overflow:hidden}
+  .progbar{height:100%;width:0;background:linear-gradient(90deg,#1E7A80,#155E63);border-radius:99px;transition:width .35s ease}
+  .btns{display:flex;gap:8px;margin-top:8px;align-items:center;flex-wrap:wrap}
+  .tbtn{font:inherit;font-size:12.5px;color:#374151;background:#fff;border:1px solid var(--line);border-radius:9px;padding:6px 11px;cursor:pointer}
+  .tbtn:active{transform:translateY(1px)}
+  .tbtn.danger{color:var(--gold);border-color:#EAD9C5}
+  .spacer{flex:1}
 
-        h1 {
-            font-size: 56px;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, #06b6d4, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+  /* ---------- sections ---------- */
+  main{max-width:780px;margin:0 auto;padding:6px 14px 40px}
+  .sec{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:12px 0;box-shadow:0 1px 2px rgba(31,41,55,.04);overflow:hidden}
+  .sec-head{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:0;padding:14px 16px;font:inherit;cursor:pointer}
+  .sec-head .ico{font-size:19px}
+  .sec-head .ttl{font-size:16px;font-weight:600;color:#233;flex:1}
+  .sec-head .cnt{font-size:12.5px;color:var(--mut);background:#F6F4EE;border:1px solid var(--soft-line);border-radius:999px;padding:2px 9px}
+  .sec.complete .cnt{color:var(--okc);background:var(--okb);border-color:#CDE8D6}
+  .sec-head .chev{color:var(--faint);font-size:13px;transition:transform .2s;transform:rotate(0deg)}
+  .sec.collapsed .chev{transform:rotate(-90deg)}
+  .sec-body{list-style:none;margin:0;padding:2px 16px 12px}
+  .sec.collapsed .sec-body{display:none}
+  .sec-note{font-size:12.5px;color:var(--mut);padding:0 16px 10px;margin-top:-4px}
+  .sec.collapsed .sec-note{display:none}
 
-        .subtitle {
-            font-size: 21px;
-            color: #a1a1a6;
-            font-weight: 400;
-            margin-bottom: 32px;
-        }
+  /* ---------- items ---------- */
+  li.item label{display:flex;gap:11px;align-items:flex-start;padding:11px 2px;cursor:pointer;border-bottom:1px dashed var(--soft-line)}
+  li.item:last-child label{border-bottom:0}
+  li.item input{position:absolute;opacity:0;width:1px;height:1px}
+  .bx{flex:0 0 22px;width:22px;height:22px;border-radius:50%;border:2px solid #C9C2B2;background:#fff;margin-top:1px;position:relative;transition:all .15s ease}
+  li.item input:checked + .bx{background:var(--teal);border-color:var(--teal)}
+  li.item input:checked + .bx::after{content:"";position:absolute;left:6.5px;top:2px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(43deg)}
+  li.item input:focus-visible + .bx{box-shadow:0 0 0 3px rgba(21,94,99,.22)}
+  li.item .tx{flex:1;min-width:0}
+  li.item .tx small{display:block;margin-top:3px;color:var(--mut);font-size:12.5px;line-height:1.5}
+  li.item.done .tx{opacity:.45}
+  li.item.done .tx .main{text-decoration:line-through}
+  .tier,.ok,.warnchip{display:inline-block;font-size:11px;border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:1.5px;white-space:nowrap}
+  .t1{color:var(--t1c);background:var(--t1b)} .t2{color:var(--t2c);background:var(--t2b)} .t3{color:var(--t3c);background:var(--t3b)}
+  .ok{color:var(--okc);background:var(--okb)}
+  .warnchip{color:var(--gold);background:#FFF3E2}
+  body.hide-done li.item.done{display:none}
 
-        .progress-container {
-            max-width: 980px;
-            margin: 0 auto 24px;
-            padding: 0 20px;
-        }
+  /* quick block */
+  .quick{background:#FBF9F4;border:1px solid var(--line);border-radius:16px;margin:12px 0;padding:14px 16px}
+  .quick h3{margin:0 0 8px;font-size:15px;color:var(--teal2)}
+  .quick table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .quick td{padding:6px 4px;border-bottom:1px dashed var(--soft-line);vertical-align:top}
+  .quick tr:last-child td{border-bottom:0}
+  .quick td:first-child{color:var(--mut);white-space:nowrap;padding-right:12px}
 
-        .progress-ring {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 16px;
-            position: relative;
-        }
+  footer{max-width:780px;margin:0 auto;padding:2px 18px 46px;color:var(--faint);font-size:12px;line-height:1.7}
 
-        .progress-ring svg {
-            transform: rotate(-90deg);
-        }
-
-        .progress-ring-circle {
-            fill: none;
-            stroke: #1d1d1f;
-            stroke-width: 8;
-        }
-
-        .progress-ring-fill {
-            fill: none;
-            stroke: url(#gradient);
-            stroke-width: 8;
-            stroke-linecap: round;
-            transition: stroke-dashoffset 0.5s ease;
-        }
-
-        .progress-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 32px;
-            font-weight: 600;
-            color: #f5f5f7;
-        }
-
-        .progress-label {
-            text-align: center;
-            font-size: 17px;
-            color: #86868b;
-        }
-
-        .container {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .section {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 18px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            border: 0.5px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .section:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .section-header {
-            padding: 24px 28px;
-            cursor: pointer;
-            user-select: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .section-title-group {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .section-icon {
-            font-size: 32px;
-            filter: drop-shadow(0 2px 8px rgba(6, 182, 212, 0.3));
-        }
-
-        .section-title {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.015em;
-        }
-
-        .section-badge {
-            font-size: 13px;
-            padding: 4px 12px;
-            border-radius: 12px;
-            background: rgba(251, 146, 60, 0.15);
-            color: #fb923c;
-            font-weight: 500;
-            margin-left: 12px;
-        }
-
-        .section-stats {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .section-count {
-            font-size: 17px;
-            color: #86868b;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .chevron {
-            font-size: 24px;
-            color: #86868b;
-            transition: transform 0.3s ease;
-        }
-
-        .section.collapsed .chevron {
-            transform: rotate(-90deg);
-        }
-
-        .section-content {
-            padding: 0 28px 24px;
-        }
-
-        .section.collapsed .section-content {
-            display: none;
-        }
-
-        .item {
-            display: flex;
-            align-items: flex-start;
-            padding: 16px 0;
-            border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
-            transition: opacity 0.2s ease;
-        }
-
-        .item:last-child {
-            border-bottom: none;
-        }
-
-        .item.checked {
-            opacity: 0.4;
-        }
-
-        .checkbox {
-            width: 24px;
-            height: 24px;
-            margin-right: 16px;
-            margin-top: 2px;
-            cursor: pointer;
-            flex-shrink: 0;
-            appearance: none;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: transparent;
-            position: relative;
-            transition: all 0.2s ease;
-        }
-
-        .checkbox:checked {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            border-color: #06b6d4;
-        }
-
-        .checkbox:checked::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #000;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .item-content {
-            flex: 1;
-        }
-
-        .item-label {
-            font-size: 17px;
-            font-weight: 400;
-            color: #f5f5f7;
-            cursor: pointer;
-            display: block;
-            line-height: 1.47059;
-        }
-
-        .item.checked .item-label {
-            text-decoration: line-through;
-        }
-
-        .item-note {
-            font-size: 14px;
-            color: #86868b;
-            margin-top: 6px;
-            line-height: 1.42859;
-        }
-
-        .item-highlight {
-            color: #fb923c;
-            font-weight: 500;
-        }
-
-        .alert {
-            background: rgba(251, 146, 60, 0.1);
-            border-left: 3px solid #fb923c;
-            padding: 16px 20px;
-            margin: 0 20px 32px;
-            border-radius: 12px;
-            font-size: 15px;
-            color: #f5f5f7;
-            max-width: 980px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .actions {
-            display: flex;
-            gap: 12px;
-            margin: 40px 20px;
-            max-width: 980px;
-            margin-left: auto;
-            margin-right: auto;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        button {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 980px;
-            background: rgba(255, 255, 255, 0.08);
-            color: #f5f5f7;
-            font-size: 15px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-family: inherit;
-        }
-
-        button:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        button.primary {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            color: #000;
-            font-weight: 500;
-        }
-
-        button.primary:hover {
-            transform: scale(1.02);
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 40px;
-            }
-
-            .subtitle {
-                font-size: 19px;
-            }
-
-            .section-title {
-                font-size: 24px;
-            }
-
-            .section-icon {
-                font-size: 28px;
-            }
-
-            .section-header {
-                padding: 20px;
-            }
-
-            .section-content {
-                padding: 0 20px 20px;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-            .hero {
-                background: white;
-            }
-            h1 {
-                color: black;
-                -webkit-text-fill-color: black;
-            }
-            .actions {
-                display: none;
-            }
-            .section.collapsed .section-content {
-                display: block !important;
-            }
-        }
-    </style>
+  @media (max-width:520px){
+    h1{font-size:19.5px;text-wrap:balance}
+    .ring-wrap,.ring{width:86px;height:86px}
+    .ring-txt b{font-size:18px}
+    .ring-txt span{font-size:10.5px}
+    .hero{padding-top:20px}
+    .hero-row{gap:10px}
+    .sub{font-size:12.5px}
+  }
+  @media print{
+    .toolbar,.btns{display:none!important}
+    body{background:#fff}
+    .sec{break-inside:avoid;box-shadow:none}
+    .sec-body{display:block!important}
+    .sec-note{display:block!important}
+    .hero .ring{filter:grayscale(1)}
+    a{text-decoration:none;color:inherit}
+  }
+</style>
 </head>
 <body>
-    <div class="hero">
-        <h1>马来西亚</h1>
-        <div class="subtitle">10月2日 – 10月9日 · 8天</div>
 
-        <div class="progress-container">
-            <div class="progress-ring">
-                <svg width="120" height="120">
-                    <defs>
-                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <circle class="progress-ring-circle" cx="60" cy="60" r="52"></circle>
-                    <circle class="progress-ring-fill" cx="60" cy="60" r="52"
-                            stroke-dasharray="326.73" stroke-dashoffset="326.73" id="progressCircle"></circle>
-                </svg>
-                <div class="progress-text" id="progressPercent">0%</div>
-            </div>
-            <div class="progress-label">已完成 <span id="checkedCount">0</span> / <span id="totalCount">0</span> 项</div>
-        </div>
+<header class="hero">
+  <div class="hero-row">
+    <div>
+      <span class="tag">10/2 – 10/9 · 8 天 · 2 人</span>
+      <h1>马来西亚 · 出行准备清单</h1>
+      <p class="sub">吉隆坡 → 马六甲 → 热浪岛 → 吉隆坡 ｜ 出发前准备 + 旅途关键节点</p>
     </div>
-
-    <div class="alert">
-        ⏰ <strong>关键节点：</strong>10/4 早班机 04:15 起床 · 10/5-7 热浪岛 Peridot · 10/6 跳岛海龟同游
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="ring-bg" cx="60" cy="60" r="52"></circle>
+        <circle class="ring-fg" id="ringFg" cx="60" cy="60" r="52"></circle>
+      </svg>
+      <div class="ring-txt"><b id="pct">0%</b><span id="cnt">0 / 0</span></div>
     </div>
+  </div>
+  <div class="chips">
+    <span class="chip warn">⚠️ 10/2 Dewakan：男禁短裤，长裤随身</span>
+    <span class="chip warn">⚠️ 10/5 凌晨 04:15 起（AK6224 07:15）</span>
+    <span class="chip warn">⚠️ 10/7 悦榕庄 59F：带护照</span>
+    <span class="chip" id="countdown">…</span>
+    <span class="chip" id="mustchip">🔥 刚需 0/0</span>
+  </div>
+</header>
 
-    <div class="container">
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">📱</span>
-                    <div>
-                        <span class="section-title">电子设备</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="electronics">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="e1" onchange="update()">
-                    <div class="item-content">
-                        <label for="e1" class="item-label">手机（充满电）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="e2" onchange="update()">
-                    <div class="item-content">
-                        <label for="e2" class="item-label">充电器和数据线</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="e3" onchange="update()">
-                    <div class="item-content">
-                        <label for="e3" class="item-label">充电宝（<20000mAh）</label>
-                        <div class="item-note">航空限制单个不超过 20000mAh</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="e4" onchange="update()">
-                    <div class="item-content">
-                        <label for="e4" class="item-label">英标转换插头</label>
-                        <div class="item-note">马来西亚使用三孔英标插座</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="e5" onchange="update()">
-                    <div class="item-content">
-                        <label for="e5" class="item-label">耳机</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="e6" onchange="update()">
-                    <div class="item-content">
-                        <label for="e6" class="item-label">防水手机袋</label>
-                        <div class="item-note">浮潜拍照必备</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">🤿</span>
-                    <div>
-                        <span class="section-title">海岛装备</span>
-                        <span class="section-badge">热浪岛</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="island">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i1" onchange="update()">
-                    <div class="item-content">
-                        <label for="i1" class="item-label">长袖水母衣/泳衣</label>
-                        <div class="item-note"><span class="item-highlight">防晒+防刮伤，海龟同游必备</span></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i2" onchange="update()">
-                    <div class="item-content">
-                        <label for="i2" class="item-label">泳裤/泳衣（2套）</label>
-                        <div class="item-note">速干款，带备用</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i3" onchange="update()">
-                    <div class="item-content">
-                        <label for="i3" class="item-label">浮潜袜</label>
-                        <div class="item-note">防珊瑚割伤、防滑</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i4" onchange="update()">
-                    <div class="item-content">
-                        <label for="i4" class="item-label">防水袋/干袋</label>
-                        <div class="item-note">跳岛时保护手机、证件、现金</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i5" onchange="update()">
-                    <div class="item-content">
-                        <label for="i5" class="item-label">防晒霜 SPF50+</label>
-                        <div class="item-note">物理防晒，珊瑚友好型</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i6" onchange="update()">
-                    <div class="item-content">
-                        <label for="i6" class="item-label">晒后修复/芦荟胶</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i7" onchange="update()">
-                    <div class="item-content">
-                        <label for="i7" class="item-label">速干毛巾</label>
-                        <div class="item-note">海岛湿度大，普通毛巾难干</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i8" onchange="update()">
-                    <div class="item-content">
-                        <label for="i8" class="item-label">晕船药</label>
-                        <div class="item-note"><span class="item-highlight">10/6 跳岛前 30 分钟服用</span></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="i9" onchange="update()">
-                    <div class="item-content">
-                        <label for="i9" class="item-label">沙滩包/防水背包</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">👕</span>
-                    <div>
-                        <span class="section-title">衣物</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="clothes">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c1" onchange="update()">
-                    <div class="item-content">
-                        <label for="c1" class="item-label">内衣内裤（8-10 套）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c2" onchange="update()">
-                    <div class="item-content">
-                        <label for="c2" class="item-label">T恤/短袖（4-5 件）</label>
-                        <div class="item-note">速干面料优先</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c3" onchange="update()">
-                    <div class="item-content">
-                        <label for="c3" class="item-label">长裤（含正装裤）</label>
-                        <div class="item-note"><span class="item-highlight">10/2 Dewakan 米其林餐厅男士禁短裤</span></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c4" onchange="update()">
-                    <div class="item-content">
-                        <label for="c4" class="item-label">短裤/沙滩裤（2-3 条）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c5" onchange="update()">
-                    <div class="item-content">
-                        <label for="c5" class="item-label">薄外套（防晒/空调）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c6" onchange="update()">
-                    <div class="item-content">
-                        <label for="c6" class="item-label">运动鞋/休闲鞋</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c7" onchange="update()">
-                    <div class="item-content">
-                        <label for="c7" class="item-label">拖鞋/凉鞋</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c8" onchange="update()">
-                    <div class="item-content">
-                        <label for="c8" class="item-label">袜子（8-10 双）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c9" onchange="update()">
-                    <div class="item-content">
-                        <label for="c9" class="item-label">帽子和太阳镜</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="c10" onchange="update()">
-                    <div class="item-content">
-                        <label for="c10" class="item-label">雨伞</label>
-                        <div class="item-note">10 月雨季</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">📄</span>
-                    <div>
-                        <span class="section-title">证件文件</span>
-                        <span class="section-badge">必备</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="docs">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d1" onchange="update()">
-                    <div class="item-content">
-                        <label for="d1" class="item-label">护照（有效期 6 个月以上）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d2" onchange="update()">
-                    <div class="item-content">
-                        <label for="d2" class="item-label">身份证</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d3" onchange="update()">
-                    <div class="item-content">
-                        <label for="d3" class="item-label">机票订单（携程 1128150872430504）</label>
-                        <div class="item-note">CZ8011 / AK6224 / AK6229 / CZ3048</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d4" onchange="update()">
-                    <div class="item-content">
-                        <label for="d4" class="item-label">大巴票登车码（2 张）</label>
-                        <div class="item-note">10/3 KKKL YGF6E5B4 · 10/4 Transnasional V721080145</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d5" onchange="update()">
-                    <div class="item-content">
-                        <label for="d5" class="item-label">酒店确认单</label>
-                        <div class="item-note">国齐轩 / 都喜公主 / Core Soho / Peridot / 泛太平洋</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d6" onchange="update()">
-                    <div class="item-content">
-                        <label for="d6" class="item-label">Peridot 快艇票（RM239.40）</label>
-                        <div class="item-note">10/5 10:30 去 · 10/7 11:00 回</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d7" onchange="update()">
-                    <div class="item-content">
-                        <label for="d7" class="item-label">餐厅确认</label>
-                        <div class="item-note">海脚人 FunNow 155432 · Dewakan 已担保</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="d8" onchange="update()">
-                    <div class="item-content">
-                        <label for="d8" class="item-label">证件照片备份</label>
-                        <div class="item-note">手机+云端双备份</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">💰</span>
-                    <div>
-                        <span class="section-title">钱财支付</span>
-                        <span class="section-badge">必备</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="money">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="m1" onchange="update()">
-                    <div class="item-content">
-                        <label for="m1" class="item-label">马币现金 500-1000 RM</label>
-                        <div class="item-note"><span class="item-highlight">码头保护费 30RM/人 必须现金</span></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="m2" onchange="update()">
-                    <div class="item-content">
-                        <label for="m2" class="item-label">人民币现金（500 元备用）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="m3" onchange="update()">
-                    <div class="item-content">
-                        <label for="m3" class="item-label">信用卡（至少 2 张）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="m4" onchange="update()">
-                    <div class="item-content">
-                        <label for="m4" class="item-label">银行卡（开通境外支付）</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">🧴</span>
-                    <div>
-                        <span class="section-title">洗护用品</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="toiletries">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="t1" onchange="update()">
-                    <div class="item-content">
-                        <label for="t1" class="item-label">牙刷牙膏</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="t2" onchange="update()">
-                    <div class="item-content">
-                        <label for="t2" class="item-label">洗面奶和护肤品</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="t3" onchange="update()">
-                    <div class="item-content">
-                        <label for="t3" class="item-label">洗发水/沐浴露（小瓶装）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="t4" onchange="update()">
-                    <div class="item-content">
-                        <label for="t4" class="item-label">剃须刀</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="t5" onchange="update()">
-                    <div class="item-content">
-                        <label for="t5" class="item-label">化妆品/卸妆用品</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="t6" onchange="update()">
-                    <div class="item-content">
-                        <label for="t6" class="item-label">湿纸巾</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="t7" onchange="update()">
-                    <div class="item-content">
-                        <label for="t7" class="item-label">女性卫生用品</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">💊</span>
-                    <div>
-                        <span class="section-title">药品健康</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="medicine">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med1" onchange="update()">
-                    <div class="item-content">
-                        <label for="med1" class="item-label">常用处方药</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med2" onchange="update()">
-                    <div class="item-content">
-                        <label for="med2" class="item-label">感冒药和退烧药</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med3" onchange="update()">
-                    <div class="item-content">
-                        <label for="med3" class="item-label">肠胃药（止泻/健胃消食）</label>
-                        <div class="item-note">应对水土不服、海鲜过敏</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med4" onchange="update()">
-                    <div class="item-content">
-                        <label for="med4" class="item-label">过敏药</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med5" onchange="update()">
-                    <div class="item-content">
-                        <label for="med5" class="item-label">创可贴</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med6" onchange="update()">
-                    <div class="item-content">
-                        <label for="med6" class="item-label">驱蚊液</label>
-                        <div class="item-note">热带蚊虫多</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med7" onchange="update()">
-                    <div class="item-content">
-                        <label for="med7" class="item-label">口罩（5-10 个）</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="med8" onchange="update()">
-                    <div class="item-content">
-                        <label for="med8" class="item-label">免洗洗手液</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">🎒</span>
-                    <div>
-                        <span class="section-title">其他</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="other">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="o1" onchange="update()">
-                    <div class="item-content">
-                        <label for="o1" class="item-label">行李箱</label>
-                        <div class="item-note">已含 20KG 托运额</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="o2" onchange="update()">
-                    <div class="item-content">
-                        <label for="o2" class="item-label">随身背包</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="o3" onchange="update()">
-                    <div class="item-content">
-                        <label for="o3" class="item-label">眼罩/耳塞</label>
-                        <div class="item-note">10/4 早班机 04:15 起床</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="o4" onchange="update()">
-                    <div class="item-content">
-                        <label for="o4" class="item-label">收纳袋/压缩袋</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="o5" onchange="update()">
-                    <div class="item-content">
-                        <label for="o5" class="item-label">行李锁</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-header" onclick="toggleSection(this)">
-                <div class="section-title-group">
-                    <span class="section-icon">✓</span>
-                    <div>
-                        <span class="section-title">出发前检查</span>
-                        <span class="section-badge">必做</span>
-                    </div>
-                </div>
-                <div class="section-stats">
-                    <span class="section-count" data-section="check">0/0</span>
-                    <span class="chevron">›</span>
-                </div>
-            </div>
-            <div class="section-content">
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch1" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch1" class="item-label">MDAC 入境卡（9/29-10/1 填写）</label>
-                        <div class="item-note">出发前 3 天在线填报</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch2" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch2" class="item-label">10/6 跳岛拼船预约</label>
-                        <div class="item-note">约 100RM/人，提前摇人</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch3" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch3" class="item-label">Core Soho 送机确认</label>
-                        <div class="item-note">10/5 早班机，房东 4:50 或 Grab</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch4" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch4" class="item-label">国齐轩晚到入住确认</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch5" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch5" class="item-label">Peridot 快艇再确认</label>
-                        <div class="item-note">10/5 10:30 接驳</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch6" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch6" class="item-label">下载离线地图</label>
-                        <div class="item-note">吉隆坡、马六甲、登嘉楼</div>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch7" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch7" class="item-label">检查航班时间</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch8" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch8" class="item-label">检查行李重量</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch9" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch9" class="item-label">关闭家中电源/燃气</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch10" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch10" class="item-label">锁好门窗</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch11" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch11" class="item-label">清空冰箱易坏食物</label>
-                    </div>
-                </div>
-                <div class="item">
-                    <input type="checkbox" class="checkbox" id="ch12" onchange="update()">
-                    <div class="item-content">
-                        <label for="ch12" class="item-label">充满所有电子设备</label>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="toolbar">
+  <div class="toolbar-in">
+    <div class="progline"><div class="progbar" id="progbar"></div></div>
+    <div class="btns">
+      <button class="tbtn" id="btnHide" type="button">隐藏已完成</button>
+      <button class="tbtn" id="btnReset" type="button">重置</button>
+      <button class="tbtn" id="btnPrint" type="button">打印</button>
+      <span class="spacer"></span>
+      <span class="chip" style="font-size:11.5px">勾选自动保存 · 仅本机</span>
     </div>
+  </div>
+</div>
 
-    <div class="actions">
-        <button onclick="expandAll()">展开全部</button>
-        <button onclick="collapseAll()">收起全部</button>
-        <button onclick="uncheckAll()">清除勾选</button>
-        <button class="primary" onclick="window.print()">打印清单</button>
-    </div>
+<main>
 
-    <script>
-        function toggleSection(header) {
-            const section = header.parentElement;
-            section.classList.toggle('collapsed');
-        }
+<!-- ================= S1 今晚就办 ================= -->
+<section class="sec" data-sec="j">
+  <button class="sec-head" type="button"><span class="ico">🚀</span><span class="ttl">今晚就办（10/1）</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="j1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">网上值机 CZ8011（南航 App / 小程序）<span class="tier t2">建议</span></span><small>明天 11:30 起飞；顺手选座。国际航班记得提前 2h+ 到机场</small></span></label></li>
+    <li class="item" data-k="j2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">离线凭证存手机：机票 4 段、酒店 5 单、大巴 2 单、快艇票、MDAC ×2<span class="tier t1">刚需</span></span><small>截图放相册 + 微信收藏各一份；桌面《订单凭证》《大巴票凭证》有全套</small></span></label></li>
+    <li class="item" data-k="j3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">手机 + 充电宝全部充满电<span class="tier t1">刚需</span></span><small>充电宝 ≤2 万毫安、随身不托运；明早出发前再补一次电</small></span></label></li>
+    <li class="item" data-k="j4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">行李按清单打包完成<span class="tier t1">刚需</span></span><small>照 👕🤿🧴💊 四区过一遍；随身包＝证件 + 长裤衬衫（Dewakan）+ 充电宝 + 药</small></span></label></li>
+    <li class="item" data-k="j5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">确认明天去机场的安排（目标 09:45 从家出发 → 白云 T2）<span class="tier t1">刚需</span></span></span></label></li>
+    <li class="item" data-k="j6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">App 装齐并登录：Grab / WhatsApp / FunNow / AirAsia Move / 南航 / 翻译<span class="tier t1">刚需</span></span><small>WhatsApp 在马来是命脉：拼船、房东、司机全靠它</small></span></label></li>
+    <li class="item" data-k="j7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">Google Maps 离线地图 ×3：吉隆坡 / 马六甲 / 登嘉楼<span class="tier t1">刚需</span></span><small>搜索城市 → 下载离线区域；岛上没网也能看</small></span></label></li>
+    <li class="item" data-k="j8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">闹钟：明早 06:30 起（设两个）<span class="tier t1">刚需</span></span><small>10/5 凌晨还要一个 04:15（那天提前设）；10/10 周六补班也别忘了</small></span></label></li>
+    <li class="item" data-k="j9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">行程报家人：航班号 / 酒店 / 联系方式留一份<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="j10"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">护照 / 身份证放进随身包固定位置<span class="tier t1">刚需</span></span><small>护照随身不托运；两人各自检查一遍</small></span></label></li>
+    <li class="item" data-k="j11"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">现金规划：换汇 / 到马取现路径确认<span class="tier t2">建议</span></span><small>目标 500-1000 RM/人；码头保护费 60RM 零钱单独装（详见 💰）</small></span></label></li>
+    <li class="item" data-k="j12"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">相机 / GoPro 充电 + 清卡（要拍水下才带）<span class="tier t3">看场景</span></span><small>不带也行：手机 + 防水袋够用；岛上租 GoPro 120RM 现金</small></span></label></li>
+    <li class="item" data-k="j13"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">睡前最后一遍（10/1 晚）：证件在包 · 票全在手机 · 充电跑完 · 闹钟已设 · 门窗燃气<span class="tier t1">刚需</span></span></span></label></li>
+    <li class="item" data-k="j14"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">两人分工备份：证件/票务一人主责 · 现金/手机另一人主责<span class="tier t2">建议</span></span><small>重要东西不放同一个人身上</small></span></label></li>
+    <li class="item" data-k="j15"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">查天气与浪况（10 月阵雨多；墨浪船班可因浪调整）<span class="tier t2">建议</span></span></span></label></li>
+  </ul>
+</section>
 
-        function update() {
-            const items = document.querySelectorAll('.item');
-            items.forEach(item => {
-                const checkbox = item.querySelector('.checkbox');
-                if (checkbox.checked) {
-                    item.classList.add('checked');
-                } else {
-                    item.classList.remove('checked');
-                }
-            });
+<!-- ================= S2 证件与入境 ================= -->
+<section class="sec" data-sec="zj">
+  <button class="sec-head" type="button"><span class="ico">📁</span><span class="ttl">证件与入境</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="zj1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">护照原件 ×2（区弘康 / 陈冰）<span class="tier t1">刚需</span></span><small>有效期已核（2036 年到期），全程随身不托运</small></span></label></li>
+    <li class="item" data-k="zj2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">身份证 ×2<span class="tier t1">刚需</span></span></span></label></li>
+    <li class="item" data-k="zj3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">MDAC 入境卡 ×2<span class="ok">已办 10/1</span></span><small>截图 + 官方 PDF 已存（手机 / 桌面《MDAC-确认单》）；入境出示即可</small></span></label></li>
+    <li class="item" data-k="zj4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">回程机票备查（CZ3048）<span class="tier t2">建议</span></span><small>入境偶尔查回程票 / 首晚酒店，手机截图就够</small></span></label></li>
+    <li class="item" data-k="zj5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">首晚酒店信息（入境可能问）<span class="tier t2">建议</span></span><small>国齐轩 Isola KLCC · 23 Jalan Yap Kwan Seng · 吉隆坡</small></span></label></li>
+    <li class="item" data-k="zj6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">证件照片备份（手机 + 云端各一份）<span class="tier t2">建议</span></span><small>护照资料页 / 身份证正反面；丢了能救急</small></span></label></li>
+    <li class="item" data-k="zj7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">文件袋 / 防水袋（装护照+登机牌）<span class="tier t2">建议</span></span><small>码头、下雨天不怕湿</small></span></label></li>
+    <li class="item" data-k="zj8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">黑笔一支（填表备用）<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="zj9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">旅游保险（如已购：保单截图存手机）<span class="tier t3">看场景</span></span></span></label></li>
+  </ul>
+</section>
 
-            updateProgress();
-            updateSectionCounts();
-        }
+<!-- ================= S3 钱与支付 ================= -->
+<section class="sec" data-sec="q">
+  <button class="sec-head" type="button"><span class="ico">💰</span><span class="ttl">钱与支付</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="q1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">马币现金 500-1000 RM/人<span class="tier t1">刚需</span></span><small>岛上是现金社会（拼船定金/按摩/杂项）；多数地方可扫码刷卡，但别全指望</small></span></label></li>
+    <li class="item" data-k="q2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">零钱专袋：码头保护费 60 RM（30×2 现金）<span class="tier t1">刚需</span></span><small>10/5 在墨浪码头柜台旁现金交；和其余现金分开放</small></span></label></li>
+    <li class="item" data-k="q3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">银行卡 ×2（银联 + Visa）<span class="tier t1">刚需</span></span><small>开通境外支付；用完随手锁卡防盗刷；Dewakan 担保在 Visa 尾 4182</small></span></label></li>
+    <li class="item" data-k="q4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">支付宝 / 微信可用状态确认<span class="tier t2">建议</span></span><small>岛上部分店铺 / 拼船定金支持扫码</small></span></label></li>
+    <li class="item" data-k="q5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">人民币现金 ~500 备用<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="q6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">零钱包 / 证件包（防水）<span class="tier t2">建议</span></span></span></label></li>
+  </ul>
+</section>
 
-        function updateProgress() {
-            const checkboxes = document.querySelectorAll('.checkbox');
-            const total = checkboxes.length;
-            let checked = 0;
+<!-- ================= S4 通讯与数码 ================= -->
+<section class="sec" data-sec="tx">
+  <button class="sec-head" type="button"><span class="ico">📱</span><span class="ttl">通讯与数码</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="tx1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">电话卡：KLIA T1 出闸左侧 Hotlink 柜台<span class="tier t1">刚需</span></span><small>18RM / 7 天 20G。8/26 新规：必须护照原件 + 人脸核验 + 酒店地址；便利店卡 / 网购卡已失效。备选：CelcomDigi 35RM</small></span></label></li>
+    <li class="item" data-k="tx2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">卡针（换卡用）<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="tx3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">国内卡开通漫游（买卡前的兜底网络）<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="tx4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">充电宝：每人 1 个、≤2 万毫安<span class="tier t2">建议</span></span><small>随身不托运；全天导航拍照耗电快</small></span></label></li>
+    <li class="item" data-k="tx5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">英标转换插头（马来＝三孔英标）<span class="tier t1">刚需</span></span><small>先翻家里（不少人家里就有英标），没有再买</small></span></label></li>
+    <li class="item" data-k="tx6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">充电器 / 数据线（多带一根）/ 小插排<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="tx7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">耳机<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="tx8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">防水手机袋（锁扣款）<span class="tier t2">建议</span></span><small>买锁扣款！按扣 / 气囊 / 滑盖款浪一冲会脱（实测事故）</small></span></label></li>
+    <li class="item" data-k="tx9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">电子设备防水分装（上岛日快艇会溅水）<span class="tier t2">建议</span></span><small>大号密封袋把电子/证件分装进包里</small></span></label></li>
+    <li class="item" data-k="tx10"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">相机 / 运动相机 / GoPro<span class="tier t3">看场景</span></span><small>想拍水下再带；岛上租 120RM 只收现金</small></span></label></li>
+  </ul>
+</section>
 
-            checkboxes.forEach(cb => {
-                if (cb.checked) checked++;
-            });
+<!-- ================= S5 衣物 ================= -->
+<section class="sec" data-sec="yf">
+  <button class="sec-head" type="button"><span class="ico">👕</span><span class="ttl">衣物（8 天换洗）</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="yf1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">长裤 + 衬衫（10/2 Dewakan · 男禁短裤）<span class="tier t1">刚需</span></span><small>放随身行李，落地直接穿去；女士裙装 / 正装</small></span></label></li>
+    <li class="item" data-k="yf2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">下水鞋（三选一：溯溪鞋 / 浮潜袜 / 沙滩鞋）<span class="tier t1">刚需</span></span><small>上船要穿跟脚的鞋（拖鞋得脱在集合点）；溯溪鞋走礁石稳、浮潜袜轻快防割——三选一即可，别重复买</small></span></label></li>
+    <li class="item" data-k="yf3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">好走路的鞋 ×1<span class="tier t2">建议</span></span><small>马六甲石板路；洞洞鞋同属"下水鞋"那档别重复买</small></span></label></li>
+    <li class="item" data-k="yf4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">泳衣 ×2（水母衣可当泳衣）<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="yf5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">水母衣（长袖长裤）×1-2<span class="tier t1">刚需</span></span><small>防晒 + 防刮 + 防水母；一晚不干，两套轮换</small></span></label></li>
+    <li class="item" data-k="yf6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">速干衣裤 / 沙滩裤<span class="tier t2">建议</span></span><small>上岛日穿速干打底（快艇会湿身）</small></span></label></li>
+    <li class="item" data-k="yf7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">薄外套<span class="tier t2">建议</span></span><small>快艇 / 大巴 / 商场空调冷；怕冷体质当刚需办</small></span></label></li>
+    <li class="item" data-k="yf8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">T 恤 / 短袖 4-5 件、内衣袜子 6-8 套<span class="tier t2">建议</span></span><small>8 天行程，中间可在酒店洗一轮</small></span></label></li>
+    <li class="item" data-k="yf9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">睡衣 / 拖鞋<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="yf10"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">帽子 + 墨镜<span class="tier t2">建议</span></span><small>岛上暴晒，物理遮挡比啥都强</small></span></label></li>
+    <li class="item" data-k="yf11"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">折叠伞<span class="tier t2">建议</span></span><small>10 月阵雨说来就来；当地便利店也能买</small></span></label></li>
+    <li class="item" data-k="yf12"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">清真寺着装：女士丝巾 / 披肩<span class="tier t3">看场景</span></span><small>10/3 海峡清真寺：不露肩腿、不穿拖鞋短裤背心；现场可租披巾 5RM，自带更卫生</small></span></label></li>
+    <li class="item" data-k="yf13"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">小背包 / 沙滩包<span class="tier t2">建议</span></span><small>岸潜 / 跳岛随身装</small></span></label></li>
+  </ul>
+</section>
 
-            const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
-            const circumference = 2 * Math.PI * 52;
-            const offset = circumference - (percent / 100) * circumference;
+<!-- ================= S6 下水装备 ================= -->
+<section class="sec" data-sec="ss">
+  <button class="sec-head" type="button"><span class="ico">🤿</span><span class="ttl">下水装备（浮潜 / 跳岛）</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="ss1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">面镜 + 呼吸管（全干式）<span class="tier t1">刚需</span></span><small>船上有公用（卫生/贴合一般）；近视先解决：度数面镜 / 日抛隐形 + 平光镜</small></span></label></li>
+    <li class="item" data-k="ss2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">防晒泥（氧化锌 · 珊瑚友好）<span class="tier t1">刚需</span></span><small>下海唯一合格防晒；化学防晒禁下海（杀珊瑚还蛰眼）。陆地日用普通防晒</small></span></label></li>
+    <li class="item" data-k="ss3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">防水包 10-20L / 大干袋<span class="tier t2">建议</span></span><small>出海家当的不湿仓库；大密封袋能凑合但会漏</small></span></label></li>
+    <li class="item" data-k="ss4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">晕船药（Novomin 等）<span class="tier t2">建议</span></span><small>有晕车晕船史＝按刚需办；上船前 30 分钟吃。10/5、10/7 各一趟快艇 + 10/6 全天跳岛都用得上；国内买好或 KL 药店（Caring）买</small></span></label></li>
+    <li class="item" data-k="ss5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">速干浴巾 / 斗篷<span class="tier t2">建议</span></span><small>湿身上船风大；酒店浴巾也能顶</small></span></label></li>
+    <li class="item" data-k="ss6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">芦荟胶 / 晒后修复<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="ss7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">酒精棉片<span class="tier t2">建议</span></span><small>面镜防雾 + 消毒两用</small></span></label></li>
+    <li class="item" data-k="ss8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">面包碎（密封袋装）<span class="tier t2">建议</span></span><small>10/6 跳岛引鱼用；船长也会打窝</small></span></label></li>
+    <li class="item" data-k="ss9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">浮潜手套<span class="tier t3">看场景</span></span><small>手背怕晒 / 怕刮再带</small></span></label></li>
+    <li class="item" data-k="ss10"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">水下相机（或手机 + 防水袋）<span class="tier t3">看场景</span></span></span></label></li>
+  </ul>
+  <div class="sec-note">铁律：全程穿救生衣（沙滩摊可租 10RM/天）· 不踩珊瑚、不追不摸海龟 · 救生衣免费不等于有教练，别游离大船。</div>
+</section>
 
-            document.getElementById('progressCircle').style.strokeDashoffset = offset;
-            document.getElementById('progressPercent').textContent = percent + '%';
-            document.getElementById('checkedCount').textContent = checked;
-            document.getElementById('totalCount').textContent = total;
-        }
+<!-- ================= S7 洗护与日常 ================= -->
+<section class="sec" data-sec="xh">
+  <button class="sec-head" type="button"><span class="ico">🧴</span><span class="ttl">洗护与日常</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="xh1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">洗漱包（牙具 / 洗面 / 护肤 / 沐浴 分装）<span class="tier t2">建议</span></span><small>Peridot 不补货，带惯用款</small></span></label></li>
+    <li class="item" data-k="xh2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">洗发水 + 护发素小瓶<span class="tier t2">建议</span></span><small>海水泡完头发打结；酒店有但一般——不在意可省</small></span></label></li>
+    <li class="item" data-k="xh3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">防晒霜（陆地日用）<span class="tier t2">建议</span></span><small>下海用防晒泥（见 🤿），普通防晒会掉会蛰眼</small></span></label></li>
+    <li class="item" data-k="xh4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">驱蚊液 / 防蚊膏<span class="tier t2">建议</span></span><small>岛上傍晚 + 河边蚊多；懒得带就到当地药店买</small></span></label></li>
+    <li class="item" data-k="xh5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">湿巾 + 抽纸<span class="tier t2">建议</span></span><small>外面厕所纸薄 / 不一定有；上岛擦手也用</small></span></label></li>
+    <li class="item" data-k="xh6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">密封袋 + 塑料袋一把<span class="tier t2">建议</span></span><small>湿衣分装 / 垃圾 / 晕船备用</small></span></label></li>
+    <li class="item" data-k="xh7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">梳子 / 剃须刀 / 棉签<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="xh8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">耳塞<span class="tier t3">看场景</span></span><small>睡眠浅才需要（民宿隔音一般）</small></span></label></li>
+    <li class="item" data-k="xh9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">一次性用品（四件套 / 内裤 / 洗脸巾）<span class="tier t3">看场景</span></span><small>按自己习惯带</small></span></label></li>
+    <li class="item" data-k="xh10"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">折叠购物袋<span class="tier t3">看场景</span></span><small>装湿衣 / 手信</small></span></label></li>
+    <li class="item" data-k="xh11"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">化妆 / 卸妆（精简）<span class="tier t3">看场景</span></span><small>出海日基本用不上</small></span></label></li>
+  </ul>
+</section>
 
-        function updateSectionCounts() {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                const checkboxes = section.querySelectorAll('.checkbox');
-                const total = checkboxes.length;
-                let checked = 0;
+<!-- ================= S8 药品 ================= -->
+<section class="sec" data-sec="yp">
+  <button class="sec-head" type="button"><span class="ico">💊</span><span class="ttl">药品（岛上没药店）</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="yp1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">个人处方药<span class="tier t1">刚需</span></span><small>按需带足全程量</small></span></label></li>
+    <li class="item" data-k="yp2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">肠胃药：蒙脱石散 / 黄连素<span class="tier t2">建议</span></span><small>腹泻概率不高、中招代价大</small></span></label></li>
+    <li class="item" data-k="yp3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">布洛芬（退烧 + 止痛）<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="yp4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">创可贴 + 碘伏棉签 + 百多邦<span class="tier t2">建议</span></span><small>礁石滑倒磕破皮（样本实证）</small></span></label></li>
+    <li class="item" data-k="yp5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">过敏药（氯雷他定等）<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="yp6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">感冒颗粒<span class="tier t3">看场景</span></span><small>空调房冷热交替备着</small></span></label></li>
+    <li class="item" data-k="yp7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">眼药水<span class="tier t3">看场景</span></span><small>海水进眼滴一下；戴隐形更需要</small></span></label></li>
+    <li class="item" data-k="yp8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">藿香正气 / 健胃消食片<span class="tier t3">看场景</span></span></span></label></li>
+    <li class="item" data-k="yp9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">晕船药别忘打包（见 🤿 区）<span class="tier t2">建议</span></span><small>10/5 上岛船 + 10/6 跳岛 + 10/7 离岛船</small></span></label></li>
+  </ul>
+</section>
 
-                checkboxes.forEach(cb => {
-                    if (cb.checked) checked++;
-                });
+<!-- ================= S8.5 打包与分装 ================= -->
+<section class="sec" data-sec="dz">
+  <button class="sec-head" type="button"><span class="ico">🎒</span><span class="ttl">打包与分装（出发前对照）</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="dz1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">随身包（登机）：证件 + 充电宝 + 常用药 + 一支笔<span class="tier t1">刚需</span></span><small>10/2 Dewakan 的长裤衬衫也放随身（落地直接去）</small></span></label></li>
+    <li class="item" data-k="dz2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">托运箱：衣物 / 洗漱 / 大瓶液体；锂电池一律随身<span class="tier t1">刚需</span></span><small>充电宝、相机电池不进托运</small></span></label></li>
+    <li class="item" data-k="dz3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">出海小包（10/5、10/6 出发前装好）<span class="tier t2">建议</span></span><small>防水包 + 手机防水袋 + 浮潜袜 + 面包碎 + 速干浴巾 + 晕船药 + 水</small></span></label></li>
+    <li class="item" data-k="dz4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">上岛日穿速干打底 + 电子双层防水分装<span class="tier t2">建议</span></span><small>快艇 45 分钟可能颠簸溅水（前人实测：全身湿透）</small></span></label></li>
+    <li class="item" data-k="dz5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">数码清点：充电器 ×2 / 数据线 ×3 / 英标插头 / 小插排 / 充电宝 ×2 / 耳机<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="dz6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">泳池装备随手包：泳衣 + 速干浴巾<span class="tier t3">看场景</span></span><small>10/3 国齐轩无边泳池、10/8 泛太平洋顶楼泳池</small></span></label></li>
+    <li class="item" data-k="dz7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">回程行李留 1/4 空位（伴手礼 / 免税）<span class="tier t3">看场景</span></span></span></label></li>
+  </ul>
+</section>
 
-                const counter = section.querySelector('.section-count');
-                if (counter) {
-                    counter.textContent = `${checked}/${total}`;
-                }
-            });
-        }
+<!-- ================= S9 出发前家里 ================= -->
+<section class="sec" data-sec="jl">
+  <button class="sec-head" type="button"><span class="ico">🏠</span><span class="ttl">出发前家里收尾</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="jl1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">关电源 / 燃气 / 拔大功率插头<span class="tier t1">刚需</span></span></span></label></li>
+    <li class="item" data-k="jl2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">门窗锁好、垃圾清掉<span class="tier t1">刚需</span></span></span></label></li>
+    <li class="item" data-k="jl3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">冰箱清易坏食物<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="jl4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">浇花 / 植物安排<span class="tier t3">看场景</span></span></span></label></li>
+    <li class="item" data-k="jl5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">近期快递 / 外卖安排（驿站代收）<span class="tier t3">看场景</span></span></span></label></li>
+    <li class="item" data-k="jl6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">请假确认（10/8-9 年假）+ 10/10 周六补班别忘<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="jl7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">告知家人 / 朋友行程与紧急联络方式<span class="tier t2">建议</span></span></span></label></li>
+    <li class="item" data-k="jl8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">手机清空间 + 备份（拍照录像多）<span class="tier t2">建议</span></span></span></label></li>
+  </ul>
+</section>
 
-        function expandAll() {
-            document.querySelectorAll('.section').forEach(s => s.classList.remove('collapsed'));
-        }
+<!-- ================= S10 凭证核对 ================= -->
+<section class="sec" data-sec="pz">
+  <button class="sec-head" type="button"><span class="ico">🎫</span><span class="ttl">凭证核对（旅途中要掏的）</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <ul class="sec-body">
+    <li class="item" data-k="pz1"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">快艇票存手机（Booking 193476）<span class="ok">已出票</span></span><small>无二维码——码头 Vigourmarine 柜台报「193476 + OU HONGKANG」换登船牌；打印版在桌面《订单凭证》</small></span></label></li>
+    <li class="item" data-k="pz2"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">大巴 2 张登车码存手机<span class="ok">已出票</span></span><small>10/3 KKKL：YGF6E5B4 ｜ 10/4 Transnasional：V721080145 ｜ 10/4 提前 15 分钟到柜台 K10/11 领登车牌</small></span></label></li>
+    <li class="item" data-k="pz3"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">MDAC ×2 存手机<span class="ok">已办</span></span></span></label></li>
+    <li class="item" data-k="pz4"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">Dewakan 预订<span class="ok">已确认</span></span><small>到店报名字即可；10/2 21:15；男长裤；提前 20 分钟到等电梯</small></span></label></li>
+    <li class="item" data-k="pz5"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">海脚人 FunNow 券（兑换码 155432）→ 截图存手机<span class="warnchip">待补归档</span></span><small>现场出示兑换码；凭券进 18:30 场</small></span></label></li>
+    <li class="item" data-k="pz6"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">国齐轩订单 + 联系人<span class="warnchip">待补归档</span></span><small>晚到入住（~17:30）确认时要用</small></span></label></li>
+    <li class="item" data-k="pz7"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">Core Soho 订单 + 房东微信/电话<span class="warnchip">待补归档</span></span><small>10/5 凌晨送机（约 4:50）全靠房东</small></span></label></li>
+    <li class="item" data-k="pz8"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">Peridot 订单（1359047448691151）<span class="warnchip">待补归档</span></span><small>核对接驳（10/5 10:30 班）与含餐口径</small></span></label></li>
+    <li class="item" data-k="pz9"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">都喜公主 / 泛太平洋 订单号<span class="warnchip">待补归档</span></span></span></label></li>
+    <li class="item" data-k="pz10"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">机票 4 段存手机（携程 1128150872430504）<span class="ok">已订</span></span><small>CZ8011 · AK6224 · AK6229 · CZ3048</small></span></label></li>
+  </ul>
+</section>
 
-        function collapseAll() {
-            document.querySelectorAll('.section').forEach(s => s.classList.add('collapsed'));
-        }
+<!-- ================= S11 逐日关键节点 ================= -->
+<section class="sec" data-sec="jd">
+  <button class="sec-head" type="button"><span class="ico">🗓</span><span class="ttl">逐日关键节点（照着走）</span><span class="cnt" data-count></span><span class="chev">▾</span></button>
+  <div class="sec-note">带 ❗ 的仍是待落实事项（今晚 / 明天就要办掉）。</div>
+  <ul class="sec-body">
+    <li class="item" data-k="jd01"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/2 · 09:45 从家出发 → 白云 T2 · 11:30 CZ8011 → 15:40 落 KLIA T1</span></span></label></li>
+    <li class="item" data-k="jd02"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/2 · 落地先办电话卡（出闸左 Hotlink）→ Grab 进城</span><small>国齐轩晚到入住（~17:30）要提前说一声 ❗</small></span></label></li>
+    <li class="item" data-k="jd03"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/2 · 18:30 海脚人 TRX（FunNow 券）</span><small>19:45 出发 Naza Tower，20:10 到店等电梯</small></span></label></li>
+    <li class="item" data-k="jd04"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/2 · 21:15 Dewakan 二星（男长裤 · 已确认）</span><small>≈23:45 结束回酒店，睡足 7 小时</small></span></label></li>
+    <li class="item" data-k="jd05"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/3 · 10:00 退房 → TBS（11:00 KKKL 大巴）</span><small>提前 30 分钟到，扫码进站（YGF6E5B4）；13:00 到马六甲</small></span></label></li>
+    <li class="item" data-k="jd06"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/3 · 17:45 海峡清真寺占位 → 19:03 日落</span><small>女士披巾 5RM；大三元 16:30 是软选项（吃不上零损失）</small></span></label></li>
+    <li class="item" data-k="jd07"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/3 · 20:45 鸡场街夜市（周六限定）</span></span></label></li>
+    <li class="item" data-k="jd08"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/4 · 09:00 退房寄存 → 13:30 榴莲档（去前先电话）❗</span><small>断货频繁；没开 / 售罄零损失跳过</small></span></label></li>
+    <li class="item" data-k="jd09"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/4 · 14:45 取行李 → 15:30 前到中央车站 → 16:00 大巴</span><small>K10/11 柜台提前 15 分钟领登车牌；堵车常态（预留足），放宽心</small></span></label></li>
+    <li class="item" data-k="jd10"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/4 · 21:00 入住 Core Soho → 约房东明早 04:50 送机 ❗ → 早睡</span></span></label></li>
+    <li class="item" data-k="jd11"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/5 · 04:15 起床（闹钟×2）→ 04:50-05:05 出发</span></span></label></li>
+    <li class="item" data-k="jd12"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/5 · 07:15 AK6224 → 08:15 落地 → 打车墨浪码头（~30km）</span></span></label></li>
+    <li class="item" data-k="jd13"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/5 · 09:30 前到码头：交保护费 30RM/人（现金）→ 柜台换登船牌</span><small>报「193476 + OU HONGKANG」；认准 Vigourmarine 官方柜台（防拉客）；10:30 船 → 11:15 到岛</small></span></label></li>
+    <li class="item" data-k="jd14"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/5 · 到岛先约 10/6 马杀鸡（前台）❗</span><small>15:30 岸潜 / 17:30 喂小鲨鱼 / 20:30 Summer Point Live</small></span></label></li>
+    <li class="item" data-k="jd15"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/6 · 09:00 跳岛拼船出发（锁位！）❗</span><small>1-2 天前摇人 / 定金锁位；带：防水袋 / 面包碎 / 浮潜袜 / 晕船药（提前 30 分钟）</small></span></label></li>
+    <li class="item" data-k="jd16"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/6 · 海龟点规矩：不追不摸不喂</span><small>17:30 马杀鸡（已约）→ 20:30 火舞秀碰运气</small></span></label></li>
+    <li class="item" data-k="jd17"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/7 · 10:00 退房寄存 → 11:00 离岛船</span><small>证件别带出海，留酒店</small></span></label></li>
+    <li class="item" data-k="jd18"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/7 · 15:35 AK6229 → 17:10 KLIA Ekspres（RM55/人）→ 18:30 泛太平洋</span></span></label></li>
+    <li class="item" data-k="jd19"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/7 · 21:30 悦榕庄 59F（带护照！）</span><small>19:15 阿罗街 → 20:30 音乐喷泉 → 23:00 回；悦榕庄免预约 · 一人一杯；HealthLand 按需</small></span></label></li>
+    <li class="item" data-k="jd20"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/8 · 11:00 ICC Pudu 早市 → 13:00 友谊肉骨茶 → 18:00 顶楼泳池收官</span></span></label></li>
+    <li class="item" data-k="jd21"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/9 · 10:30 退房 → 11:15 出发 KLIA T1 → 14:45 CZ3048 → 19:10 到家</span><small>伴手礼 / 免税最后补漏；液体大瓶托运</small></span></label></li>
+    <li class="item" data-k="jd22"><label><input type="checkbox"><span class="bx"></span><span class="tx"><span class="main">10/10 · 周六调休补班（上闹钟！）</span></span></label></li>
+  </ul>
+</section>
 
-        function uncheckAll() {
-            if (!confirm('确定要清除所有勾选吗？')) return;
-            document.querySelectorAll('.checkbox').forEach(cb => cb.checked = false);
-            update();
-        }
+<div class="quick">
+  <h3>💵 现金都花在哪（预估 · 按实际增减）</h3>
+  <table>
+    <tr><td>码头保护费</td><td>60 RM（30×2 · 现金必付）</td></tr>
+    <tr><td>拼船船费 / 定金</td><td>约 200 RM（~100/人；部分代理收支付宝）</td></tr>
+    <tr><td>马杀鸡（10/6）</td><td>240-320 RM（120-158/人）</td></tr>
+    <tr><td>榴莲 + 小吃杂项</td><td>约 100 RM</td></tr>
+    <tr><td>结论</td><td><b>人均备 500-800 RM 现钞 + 其余扫码刷卡</b></td></tr>
+  </table>
+</div>
 
-        document.addEventListener('DOMContentLoaded', update);
-    </script>
+<div class="quick">
+  <h3>☀️ 每天出门前 30 秒</h3>
+  <p style="margin:2px 0;font-size:13.5px"><b>证件 · 电 · 钱 · 防晒/水</b>：护照在不在包 · 充电宝带没带 · 零钱够不够 · 防晒和水补上；出海日先吃晕船药（提前 30 分钟）。</p>
+</div>
+
+<!-- ================= 紧急速查 ================= -->
+<div class="quick">
+  <h3>🆘 紧急速查（出发前存手机）</h3>
+  <table>
+    <tr><td>马来西亚紧急</td><td><b>999</b>（报警 / 急救 / 消防通用）</td></tr>
+    <tr><td>中国领保热线</td><td><b>+86-10-12308</b>（外交部全球领事保护，24 小时）</td></tr>
+    <tr><td>护照丢了</td><td>先就近报警拿报案单 → 到中国驻马使馆补办旅行证（使馆电话出发前到官网存一下）</td></tr>
+    <tr><td>船公司 WhatsApp</td><td><b>+6011-31383567</b>（墨浪码头 / Vigourmarine，船班改期用）</td></tr>
+    <tr><td>使馆与酒店</td><td>把「中国驻马使馆、各酒店前台、房东、包车司机」电话存进手机通讯录（出发前逐个补齐）</td></tr>
+  </table>
+</div>
+
+</main>
+
+<footer>
+  生成 2026-10-01 ｜ 依据：《行程-白天版-定稿 09-23》＋《准备清单档案》＋《购物清单 09-25》核验数据 ｜ 单位：¥＝人民币 · RM＝令吉（只写 RM 的是马来西亚本地价）<br>
+  勾选状态自动保存在本机浏览器（换设备 / 清缓存会丢）；重要事项请同时依赖手机里的凭证与打印件。
+</footer>
+
+<script>
+(function(){
+  var KEY = 'mlxy-prep-2026-v1';
+  var state = {checked:{}, collapsed:{}, hide:false};
+  try { var s = localStorage.getItem(KEY); if (s) { var p = JSON.parse(s); if (p && typeof p === 'object') { state.checked = p.checked || {}; state.collapsed = p.collapsed || {}; state.hide = !!p.hide; } } } catch(e){}
+
+  var items = [].slice.call(document.querySelectorAll('li.item'));
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+  function refresh(){
+    var done = 0;
+    items.forEach(function(li){
+      var k = li.getAttribute('data-k');
+      var cb = li.querySelector('input');
+      var on = !!state.checked[k];
+      if (cb) cb.checked = on;
+      li.classList.toggle('done', on);
+      if (on) done++;
+    });
+    var total = items.length;
+    var pct = total ? Math.round(done * 100 / total) : 0;
+    document.getElementById('pct').textContent = pct + '%';
+    document.getElementById('cnt').textContent = done + ' / ' + total;
+    var C = 2 * Math.PI * 52;
+    var fg = document.getElementById('ringFg');
+    fg.style.strokeDasharray = C;
+    fg.style.strokeDashoffset = C * (1 - (total ? done / total : 0));
+    document.getElementById('progbar').style.width = pct + '%';
+    var musts = items.filter(function(x){ return x.querySelector('.t1'); });
+    var mustDone = musts.filter(function(x){ return x.classList.contains('done'); }).length;
+    var mc = document.getElementById('mustchip');
+    if (mc) mc.textContent = '🔥 刚需 ' + mustDone + '/' + musts.length;
+
+    [].slice.call(document.querySelectorAll('section.sec')).forEach(function(sec){
+      var lis = [].slice.call(sec.querySelectorAll('li.item'));
+      var d = 0;
+      lis.forEach(function(x){ if (x.classList.contains('done')) d++; });
+      var c = sec.querySelector('[data-count]');
+      if (c) c.textContent = d + '/' + lis.length;
+      sec.classList.toggle('complete', lis.length > 0 && d === lis.length);
+      sec.classList.toggle('collapsed', !!state.collapsed[sec.getAttribute('data-sec')]);
+    });
+
+    document.body.classList.toggle('hide-done', !!state.hide);
+    document.getElementById('btnHide').textContent = state.hide ? '显示已完成' : '隐藏已完成';
+  }
+
+  items.forEach(function(li){
+    var cb = li.querySelector('input');
+    if (!cb) return;
+    cb.addEventListener('change', function(){
+      var k = li.getAttribute('data-k');
+      if (cb.checked) state.checked[k] = 1; else delete state.checked[k];
+      save(); refresh();
+    });
+  });
+
+  [].slice.call(document.querySelectorAll('.sec-head')).forEach(function(h){
+    h.addEventListener('click', function(){
+      var sec = h.parentElement;
+      var k = sec.getAttribute('data-sec');
+      if (sec.classList.contains('collapsed')) delete state.collapsed[k];
+      else state.collapsed[k] = 1;
+      save(); refresh();
+    });
+  });
+
+  document.getElementById('btnHide').addEventListener('click', function(){
+    state.hide = !state.hide; save(); refresh();
+  });
+  document.getElementById('btnReset').addEventListener('click', function(){
+    if (confirm('确认重置所有勾选？（不可撤销）')) {
+      state = {checked:{}, collapsed:{}, hide:false};
+      save(); refresh();
+    }
+  });
+  document.getElementById('btnPrint').addEventListener('click', function(){ window.print(); });
+
+  /* countdown · 目标 = 10/2 09:45 出发去机场 */
+  var target = new Date('2026-10-02T09:45:00+08:00');
+  function tick(){
+    var now = new Date();
+    var diff = target.getTime() - now.getTime();
+    var el = document.getElementById('countdown');
+    if (diff > 0) {
+      var hours = Math.floor(diff / 3600000);
+      var days = Math.floor(hours / 24);
+      hours = hours % 24;
+      el.textContent = days > 0 ? ('⏳ 距出发 ≈ ' + days + ' 天 ' + hours + ' 小时') : ('⏳ 距出发 ≈ ' + hours + ' 小时');
+    } else {
+      var day = Math.floor((now.getTime() - target.getTime()) / 86400000) + 1;
+      if (day > 8) day = 8;
+      el.textContent = '🛫 旅途进行中 · 第 ' + day + ' 天';
+    }
+  }
+  tick();
+  setInterval(tick, 60000);
+
+  refresh();
+})();
+</script>
 </body>
 </html>

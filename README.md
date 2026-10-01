@@ -1,4 +1,4 @@
-# 马来西亚出行清单
+# 马来西亚出行清单（交互版）
 
 Apple 风格的交互式出行清单，适配移动端。
 
@@ -6,7 +6,7 @@ Apple 风格的交互式出行清单，适配移动端。
 
 部署到 GitHub Pages 后，访问地址：
 ```
-https://你的用户名.github.io/malaysia-checklist
+https://gaintEnemyCrabBurger.github.io/malaysia-travel-checklist/
 ```
 
 ## 部署步骤
@@ -58,3 +58,6 @@ https://你的用户名.github.io/malaysia-checklist
 - ✅ 移动端适配
 - ✅ 离线可用
 - ✅ 打印支持
+- ✅ 勾选进度自动保存（本机 localStorage）
+- ✅ 刚需 / 建议 / 看场景 三级标注
+- ✅ 逐日关键节点 + 紧急速查
