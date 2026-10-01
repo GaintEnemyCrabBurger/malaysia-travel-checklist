@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马来西亚 · 出行清单</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+            background: #000;
+            color: #f5f5f7;
+            padding: 0;
+            line-height: 1.47059;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, #1d1d1f 0%, #000 100%);
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 21px;
+            color: #a1a1a6;
+            font-weight: 400;
+            margin-bottom: 32px;
+        }
+
+        .progress-container {
+            max-width: 980px;
+            margin: 0 auto 24px;
+            padding: 0 20px;
+        }
+
+        .progress-ring {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+            position: relative;
+        }
+
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            fill: none;
+            stroke: #1d1d1f;
+            stroke-width: 8;
+        }
+
+        .progress-ring-fill {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 8;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            font-weight: 600;
+            color: #f5f5f7;
+        }
+
+        .progress-label {
+            text-align: center;
+            font-size: 17px;
+            color: #86868b;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 18px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .section-header {
+            padding: 24px 28px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title-group {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-icon {
+            font-size: 32px;
+            filter: drop-shadow(0 2px 8px rgba(6, 182, 212, 0.3));
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+        }
+
+        .section-badge {
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            background: rgba(251, 146, 60, 0.15);
+            color: #fb923c;
+            font-weight: 500;
+            margin-left: 12px;
+        }
+
+        .section-stats {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .section-count {
+            font-size: 17px;
+            color: #86868b;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .chevron {
+            font-size: 24px;
+            color: #86868b;
+            transition: transform 0.3s ease;
+        }
+
+        .section.collapsed .chevron {
+            transform: rotate(-90deg);
+        }
+
+        .section-content {
+            padding: 0 28px 24px;
+        }
+
+        .section.collapsed .section-content {
+            display: none;
+        }
+
+        .item {
+            display: flex;
+            align-items: flex-start;
+            padding: 16px 0;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.08);
+            transition: opacity 0.2s ease;
+        }
+
+        .item:last-child {
+            border-bottom: none;
+        }
+
+        .item.checked {
+            opacity: 0.4;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            margin-right: 16px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+            appearance: none;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: transparent;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox:checked {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border-color: #06b6d4;
+        }
+
+        .checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #000;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .item-content {
+            flex: 1;
+        }
+
+        .item-label {
+            font-size: 17px;
+            font-weight: 400;
+            color: #f5f5f7;
+            cursor: pointer;
+            display: block;
+            line-height: 1.47059;
+        }
+
+        .item.checked .item-label {
+            text-decoration: line-through;
+        }
+
+        .item-note {
+            font-size: 14px;
+            color: #86868b;
+            margin-top: 6px;
+            line-height: 1.42859;
+        }
+
+        .item-highlight {
+            color: #fb923c;
+            font-weight: 500;
+        }
+
+        .alert {
+            background: rgba(251, 146, 60, 0.1);
+            border-left: 3px solid #fb923c;
+            padding: 16px 20px;
+            margin: 0 20px 32px;
+            border-radius: 12px;
+            font-size: 15px;
+            color: #f5f5f7;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin: 40px 20px;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 980px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #f5f5f7;
+            font-size: 15px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: inherit;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        button.primary {
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: #000;
+            font-weight: 500;
+        }
+
+        button.primary:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            .subtitle {
+                font-size: 19px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .section-icon {
+                font-size: 28px;
+            }
+
+            .section-header {
+                padding: 20px;
+            }
+
+            .section-content {
+                padding: 0 20px 20px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .hero {
+                background: white;
+            }
+            h1 {
+                color: black;
+                -webkit-text-fill-color: black;
+            }
+            .actions {
+                display: none;
+            }
+            .section.collapsed .section-content {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>马来西亚</h1>
+        <div class="subtitle">10月2日 – 10月9日 · 8天</div>
+
+        <div class="progress-container">
+            <div class="progress-ring">
+                <svg width="120" height="120">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <circle class="progress-ring-circle" cx="60" cy="60" r="52"></circle>
+                    <circle class="progress-ring-fill" cx="60" cy="60" r="52"
+                            stroke-dasharray="326.73" stroke-dashoffset="326.73" id="progressCircle"></circle>
+                </svg>
+                <div class="progress-text" id="progressPercent">0%</div>
+            </div>
+            <div class="progress-label">已完成 <span id="checkedCount">0</span> / <span id="totalCount">0</span> 项</div>
+        </div>
+    </div>
+
+    <div class="alert">
+        ⏰ <strong>关键节点：</strong>10/4 早班机 04:15 起床 · 10/5-7 热浪岛 Peridot · 10/6 跳岛海龟同游
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">📱</span>
+                    <div>
+                        <span class="section-title">电子设备</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="electronics">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="e1" onchange="update()">
+                    <div class="item-content">
+                        <label for="e1" class="item-label">手机（充满电）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="e2" onchange="update()">
+                    <div class="item-content">
+                        <label for="e2" class="item-label">充电器和数据线</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="e3" onchange="update()">
+                    <div class="item-content">
+                        <label for="e3" class="item-label">充电宝（<20000mAh）</label>
+                        <div class="item-note">航空限制单个不超过 20000mAh</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="e4" onchange="update()">
+                    <div class="item-content">
+                        <label for="e4" class="item-label">英标转换插头</label>
+                        <div class="item-note">马来西亚使用三孔英标插座</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="e5" onchange="update()">
+                    <div class="item-content">
+                        <label for="e5" class="item-label">耳机</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="e6" onchange="update()">
+                    <div class="item-content">
+                        <label for="e6" class="item-label">防水手机袋</label>
+                        <div class="item-note">浮潜拍照必备</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">🤿</span>
+                    <div>
+                        <span class="section-title">海岛装备</span>
+                        <span class="section-badge">热浪岛</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="island">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i1" onchange="update()">
+                    <div class="item-content">
+                        <label for="i1" class="item-label">长袖水母衣/泳衣</label>
+                        <div class="item-note"><span class="item-highlight">防晒+防刮伤，海龟同游必备</span></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i2" onchange="update()">
+                    <div class="item-content">
+                        <label for="i2" class="item-label">泳裤/泳衣（2套）</label>
+                        <div class="item-note">速干款，带备用</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i3" onchange="update()">
+                    <div class="item-content">
+                        <label for="i3" class="item-label">浮潜袜</label>
+                        <div class="item-note">防珊瑚割伤、防滑</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i4" onchange="update()">
+                    <div class="item-content">
+                        <label for="i4" class="item-label">防水袋/干袋</label>
+                        <div class="item-note">跳岛时保护手机、证件、现金</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i5" onchange="update()">
+                    <div class="item-content">
+                        <label for="i5" class="item-label">防晒霜 SPF50+</label>
+                        <div class="item-note">物理防晒，珊瑚友好型</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i6" onchange="update()">
+                    <div class="item-content">
+                        <label for="i6" class="item-label">晒后修复/芦荟胶</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i7" onchange="update()">
+                    <div class="item-content">
+                        <label for="i7" class="item-label">速干毛巾</label>
+                        <div class="item-note">海岛湿度大，普通毛巾难干</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i8" onchange="update()">
+                    <div class="item-content">
+                        <label for="i8" class="item-label">晕船药</label>
+                        <div class="item-note"><span class="item-highlight">10/6 跳岛前 30 分钟服用</span></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="i9" onchange="update()">
+                    <div class="item-content">
+                        <label for="i9" class="item-label">沙滩包/防水背包</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">👕</span>
+                    <div>
+                        <span class="section-title">衣物</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="clothes">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c1" onchange="update()">
+                    <div class="item-content">
+                        <label for="c1" class="item-label">内衣内裤（8-10 套）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c2" onchange="update()">
+                    <div class="item-content">
+                        <label for="c2" class="item-label">T恤/短袖（4-5 件）</label>
+                        <div class="item-note">速干面料优先</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c3" onchange="update()">
+                    <div class="item-content">
+                        <label for="c3" class="item-label">长裤（含正装裤）</label>
+                        <div class="item-note"><span class="item-highlight">10/2 Dewakan 米其林餐厅男士禁短裤</span></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c4" onchange="update()">
+                    <div class="item-content">
+                        <label for="c4" class="item-label">短裤/沙滩裤（2-3 条）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c5" onchange="update()">
+                    <div class="item-content">
+                        <label for="c5" class="item-label">薄外套（防晒/空调）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c6" onchange="update()">
+                    <div class="item-content">
+                        <label for="c6" class="item-label">运动鞋/休闲鞋</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c7" onchange="update()">
+                    <div class="item-content">
+                        <label for="c7" class="item-label">拖鞋/凉鞋</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c8" onchange="update()">
+                    <div class="item-content">
+                        <label for="c8" class="item-label">袜子（8-10 双）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c9" onchange="update()">
+                    <div class="item-content">
+                        <label for="c9" class="item-label">帽子和太阳镜</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="c10" onchange="update()">
+                    <div class="item-content">
+                        <label for="c10" class="item-label">雨伞</label>
+                        <div class="item-note">10 月雨季</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">📄</span>
+                    <div>
+                        <span class="section-title">证件文件</span>
+                        <span class="section-badge">必备</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="docs">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d1" onchange="update()">
+                    <div class="item-content">
+                        <label for="d1" class="item-label">护照（有效期 6 个月以上）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d2" onchange="update()">
+                    <div class="item-content">
+                        <label for="d2" class="item-label">身份证</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d3" onchange="update()">
+                    <div class="item-content">
+                        <label for="d3" class="item-label">机票订单（携程 1128150872430504）</label>
+                        <div class="item-note">CZ8011 / AK6224 / AK6229 / CZ3048</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d4" onchange="update()">
+                    <div class="item-content">
+                        <label for="d4" class="item-label">大巴票登车码（2 张）</label>
+                        <div class="item-note">10/3 KKKL YGF6E5B4 · 10/4 Transnasional V721080145</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d5" onchange="update()">
+                    <div class="item-content">
+                        <label for="d5" class="item-label">酒店确认单</label>
+                        <div class="item-note">国齐轩 / 都喜公主 / Core Soho / Peridot / 泛太平洋</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d6" onchange="update()">
+                    <div class="item-content">
+                        <label for="d6" class="item-label">Peridot 快艇票（RM239.40）</label>
+                        <div class="item-note">10/5 10:30 去 · 10/7 11:00 回</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d7" onchange="update()">
+                    <div class="item-content">
+                        <label for="d7" class="item-label">餐厅确认</label>
+                        <div class="item-note">海脚人 FunNow 155432 · Dewakan 已担保</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="d8" onchange="update()">
+                    <div class="item-content">
+                        <label for="d8" class="item-label">证件照片备份</label>
+                        <div class="item-note">手机+云端双备份</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">💰</span>
+                    <div>
+                        <span class="section-title">钱财支付</span>
+                        <span class="section-badge">必备</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="money">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="m1" onchange="update()">
+                    <div class="item-content">
+                        <label for="m1" class="item-label">马币现金 500-1000 RM</label>
+                        <div class="item-note"><span class="item-highlight">码头保护费 30RM/人 必须现金</span></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="m2" onchange="update()">
+                    <div class="item-content">
+                        <label for="m2" class="item-label">人民币现金（500 元备用）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="m3" onchange="update()">
+                    <div class="item-content">
+                        <label for="m3" class="item-label">信用卡（至少 2 张）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="m4" onchange="update()">
+                    <div class="item-content">
+                        <label for="m4" class="item-label">银行卡（开通境外支付）</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">🧴</span>
+                    <div>
+                        <span class="section-title">洗护用品</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="toiletries">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="t1" onchange="update()">
+                    <div class="item-content">
+                        <label for="t1" class="item-label">牙刷牙膏</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="t2" onchange="update()">
+                    <div class="item-content">
+                        <label for="t2" class="item-label">洗面奶和护肤品</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="t3" onchange="update()">
+                    <div class="item-content">
+                        <label for="t3" class="item-label">洗发水/沐浴露（小瓶装）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="t4" onchange="update()">
+                    <div class="item-content">
+                        <label for="t4" class="item-label">剃须刀</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="t5" onchange="update()">
+                    <div class="item-content">
+                        <label for="t5" class="item-label">化妆品/卸妆用品</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="t6" onchange="update()">
+                    <div class="item-content">
+                        <label for="t6" class="item-label">湿纸巾</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="t7" onchange="update()">
+                    <div class="item-content">
+                        <label for="t7" class="item-label">女性卫生用品</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">💊</span>
+                    <div>
+                        <span class="section-title">药品健康</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="medicine">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med1" onchange="update()">
+                    <div class="item-content">
+                        <label for="med1" class="item-label">常用处方药</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med2" onchange="update()">
+                    <div class="item-content">
+                        <label for="med2" class="item-label">感冒药和退烧药</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med3" onchange="update()">
+                    <div class="item-content">
+                        <label for="med3" class="item-label">肠胃药（止泻/健胃消食）</label>
+                        <div class="item-note">应对水土不服、海鲜过敏</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med4" onchange="update()">
+                    <div class="item-content">
+                        <label for="med4" class="item-label">过敏药</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med5" onchange="update()">
+                    <div class="item-content">
+                        <label for="med5" class="item-label">创可贴</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med6" onchange="update()">
+                    <div class="item-content">
+                        <label for="med6" class="item-label">驱蚊液</label>
+                        <div class="item-note">热带蚊虫多</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med7" onchange="update()">
+                    <div class="item-content">
+                        <label for="med7" class="item-label">口罩（5-10 个）</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="med8" onchange="update()">
+                    <div class="item-content">
+                        <label for="med8" class="item-label">免洗洗手液</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">🎒</span>
+                    <div>
+                        <span class="section-title">其他</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="other">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="o1" onchange="update()">
+                    <div class="item-content">
+                        <label for="o1" class="item-label">行李箱</label>
+                        <div class="item-note">已含 20KG 托运额</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="o2" onchange="update()">
+                    <div class="item-content">
+                        <label for="o2" class="item-label">随身背包</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="o3" onchange="update()">
+                    <div class="item-content">
+                        <label for="o3" class="item-label">眼罩/耳塞</label>
+                        <div class="item-note">10/4 早班机 04:15 起床</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="o4" onchange="update()">
+                    <div class="item-content">
+                        <label for="o4" class="item-label">收纳袋/压缩袋</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="o5" onchange="update()">
+                    <div class="item-content">
+                        <label for="o5" class="item-label">行李锁</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <div class="section-title-group">
+                    <span class="section-icon">✓</span>
+                    <div>
+                        <span class="section-title">出发前检查</span>
+                        <span class="section-badge">必做</span>
+                    </div>
+                </div>
+                <div class="section-stats">
+                    <span class="section-count" data-section="check">0/0</span>
+                    <span class="chevron">›</span>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch1" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch1" class="item-label">MDAC 入境卡（9/29-10/1 填写）</label>
+                        <div class="item-note">出发前 3 天在线填报</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch2" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch2" class="item-label">10/6 跳岛拼船预约</label>
+                        <div class="item-note">约 100RM/人，提前摇人</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch3" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch3" class="item-label">Core Soho 送机确认</label>
+                        <div class="item-note">10/5 早班机，房东 4:50 或 Grab</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch4" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch4" class="item-label">国齐轩晚到入住确认</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch5" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch5" class="item-label">Peridot 快艇再确认</label>
+                        <div class="item-note">10/5 10:30 接驳</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch6" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch6" class="item-label">下载离线地图</label>
+                        <div class="item-note">吉隆坡、马六甲、登嘉楼</div>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch7" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch7" class="item-label">检查航班时间</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch8" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch8" class="item-label">检查行李重量</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch9" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch9" class="item-label">关闭家中电源/燃气</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch10" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch10" class="item-label">锁好门窗</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch11" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch11" class="item-label">清空冰箱易坏食物</label>
+                    </div>
+                </div>
+                <div class="item">
+                    <input type="checkbox" class="checkbox" id="ch12" onchange="update()">
+                    <div class="item-content">
+                        <label for="ch12" class="item-label">充满所有电子设备</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button onclick="expandAll()">展开全部</button>
+        <button onclick="collapseAll()">收起全部</button>
+        <button onclick="uncheckAll()">清除勾选</button>
+        <button class="primary" onclick="window.print()">打印清单</button>
+    </div>
+
+    <script>
+        function toggleSection(header) {
+            const section = header.parentElement;
+            section.classList.toggle('collapsed');
+        }
+
+        function update() {
+            const items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                const checkbox = item.querySelector('.checkbox');
+                if (checkbox.checked) {
+                    item.classList.add('checked');
+                } else {
+                    item.classList.remove('checked');
+                }
+            });
+
+            updateProgress();
+            updateSectionCounts();
+        }
+
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('.checkbox');
+            const total = checkboxes.length;
+            let checked = 0;
+
+            checkboxes.forEach(cb => {
+                if (cb.checked) checked++;
+            });
+
+            const percent = total > 0 ? Math.round((checked / total) * 100) : 0;
+            const circumference = 2 * Math.PI * 52;
+            const offset = circumference - (percent / 100) * circumference;
+
+            document.getElementById('progressCircle').style.strokeDashoffset = offset;
+            document.getElementById('progressPercent').textContent = percent + '%';
+            document.getElementById('checkedCount').textContent = checked;
+            document.getElementById('totalCount').textContent = total;
+        }
+
+        function updateSectionCounts() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                const checkboxes = section.querySelectorAll('.checkbox');
+                const total = checkboxes.length;
+                let checked = 0;
+
+                checkboxes.forEach(cb => {
+                    if (cb.checked) checked++;
+                });
+
+                const counter = section.querySelector('.section-count');
+                if (counter) {
+                    counter.textContent = `${checked}/${total}`;
+                }
+            });
+        }
+
+        function expandAll() {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('collapsed'));
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('.section').forEach(s => s.classList.add('collapsed'));
+        }
+
+        function uncheckAll() {
+            if (!confirm('确定要清除所有勾选吗？')) return;
+            document.querySelectorAll('.checkbox').forEach(cb => cb.checked = false);
+            update();
+        }
+
+        document.addEventListener('DOMContentLoaded', update);
+    </script>
+</body>
+</html>
